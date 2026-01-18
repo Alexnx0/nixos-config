@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Shows a dmenu with all the runnable flatpaks 
+
+ids=$(flatpak list --app --columns=application)
+names=$(flatpak list --app --columns=name)
+
+# make arrays
+readarray -t idsarr < <(printf '%s\n' $ids)
+readarray -t namesarr < <(printf '%s\n' $names)
+
+choice=`echo "${names[@]}" | dmenu`
+
+for i in "${!namesarr[@]}"
+do
+    elem=${namesarr[i]}
+    if [[ "$elem" == "$choice" ]]; then
+        id=${idsarr[i]}
+        echo "Launching $id..."
+        nohup flatpak run $id > /dev/null 2>&1 &
+    fi 
+done

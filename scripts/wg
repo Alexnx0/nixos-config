@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+
+wallpaper_dir="$HOME/nixos/wallpapers"
+
+if [ ! -d "$wallpaper_dir" ]; then
+  notify-send "Wallpaper directory not found"
+  exit 1
+fi
+
+# Abre o sxiv em modo de seleção (-o) e em modo thumbnail (-t)
+# e salva os arquivos selecionados em /tmp/sxiv_selection
+selection_file="/tmp/sxiv_selection"
+
+nsxiv -ot "$wallpaper_dir" > "$selection_file"
+
+# Verifica se houve seleção
+if [ ! -s "$selection_file" ]; then
+  notify-send "Nenhum wallpaper selecionado"
+  exit 0
+fi
+
+# Aplica o wallpaper selecionado (apenas o primeiro da lista)
+selected_wallpaper=$(head -n 1 "$selection_file")
+feh --bg-scale "$selected_wallpaper"
+
+notify-send "Wallpaper aplicado!" "Imagem: $(basename "$selected_wallpaper")"

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+W=$(curl -s https://wttr.in/Curitiba?format="%t\n" | head -n 3)
+echo "$W"

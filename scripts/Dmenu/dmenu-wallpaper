@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Diretório onde ficam seus wallpapers
+WALLPAPER_DIR="$HOME/wallpapers"
+
+# Verifica se o diretório existe
+if [ ! -d "$WALLPAPER_DIR" ]; then
+    echo "Diretório de wallpapers não encontrado: $WALLPAPER_DIR"
+    exit 1
+fi
+
+# Usa dmenu para escolher o arquivo
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" -o -iname "*.webp" \) | sort | dmenu -i -p "Wallpaper Select:")
+
+# Se o usuário cancelar
+[ -z "$WALLPAPER" ] && exit 0
+
+# Define o wallpaper com feh
+feh --bg-fill "$WALLPAPER"
+
+# (Opcional) Salva o caminho para persistência (caso reinicie o X)
+echo "feh --bg-fill \"$WALLPAPER\"" > "$HOME/.fehbg"
+chmod +x "$HOME/.fehbg"

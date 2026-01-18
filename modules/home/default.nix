@@ -1,0 +1,35 @@
+{ ... }:
+{
+  imports = [
+    ./packages
+    ./git.nix
+    ./ssh.nix
+    ./picom.nix
+    ./kdeconnect.nix
+    ./fastfetch.nix
+    ./zathura.nix
+    ./virt-manager.nix
+    ./fonts.nix
+    ./btop.nix
+    ./polkit.nix
+    ./polybar.nix
+    ./discord.nix
+    ./xdg-mimes.nix
+    ./cava.nix
+    ./zsh
+    ./i3-wm.nix
+    ./theming
+    #./theming.nix
+    ./xorg.nix
+    ./dunst.nix
+    ./freetube.nix
+    ./gaming.nix
+    ./nvf.nix 
+    ./bat.nix
+    ./starship.nix
+    ./dmenu.nix
+    #./kitty.nix
+    ./alacritty.nix
+    ./librewolf.nix
+  ];
+}

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+TIME="$(date '+%H:%M:%S [ %Y-%m-%d ]')"
+#TIME="$(date '+%d %b %Y, %a %H:%M:%S')"
+echo "$TIME"
